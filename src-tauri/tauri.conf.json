@@ -2,12 +2,23 @@
   "$schema": "https://schema.tauri.app/config/2",
   "productName": "mitai",
   "version": "0.1.0",
-  "identifier": "com.mitai.app",
+  "identifier": "la.mitai.app",
   "build": {
     "beforeDevCommand": "bun run dev",
     "devUrl": "http://localhost:1420",
     "beforeBuildCommand": "bun run build",
     "frontendDist": "../dist"
+  },
+  "plugins": {
+    "sql": {
+      "preload": ["sqlite:mitai.db"]
+    },
+    "deep-link": {
+      "mobile": [{ "host": "mitai.la", "pathPrefix": ["/open"] }],
+      "desktop": {
+        "schemes": ["mitai-la", "mitai-immerse", "mitai"]
+      }
+    }
   },
   "app": {
     "windows": [
